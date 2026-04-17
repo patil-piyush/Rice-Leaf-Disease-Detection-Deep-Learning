@@ -1,142 +1,153 @@
-This is a professional, research-oriented README.md file designed for a GitHub repository. It reflects the high-impact methodology we developed, including the GAN-augmentation, Swin Transformer comparison, and Dual-XAI validation.
+# 🌾 Rice Leaf Disease Detection using Deep Learning (CNN vs Swin Transformer with XAI)
 
-Rice Leaf Disease Detection: Comparative Analysis of CNNs and Swin Transformers with Dual-XAI
+## 📌 Project Overview
+This project focuses on automatic detection of rice leaf diseases using Deep Learning techniques. It compares two models:
+- **ResNet50 (CNN)**
+- **Swin Transformer (Vision Transformer)**
 
-![alt text](https://img.shields.io/badge/python-3.10+-blue.svg)
+To ensure transparency and trust in predictions, Explainable AI (XAI) techniques such as **Grad-CAM++** and **Gradient SHAP** are applied.
 
+The system is designed to assist farmers and agricultural experts in early and accurate disease identification, improving crop yield and reducing losses.
 
-![alt text](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)
+---
 
+## 🎯 Objectives
+- Compare performance of CNN (ResNet50) and Swin Transformer
+- Improve rice disease detection accuracy using Deep Learning
+- Use class-balanced dataset for fair evaluation
+- Apply Explainable AI for model interpretability
+- Ensure biological correctness of predictions
 
-![alt text](https://img.shields.io/badge/License-MIT-yellow.svg)
+---
 
-📌 Project Overview
+## 📊 Dataset Used
+**Mendeley Rice Disease & Pest Dataset**
 
-This research project provides a systematic experimental framework for automated rice disease and pest identification. We move beyond simple classification by addressing the "Data Hunger" of modern architectures using Generative Adversarial Networks (GANs) and validating model decisions through a Dual-XAI pipeline (Grad-CAM++ and SHAP).
+🔗 Link: https://data.mendeley.com/datasets/vwv3nry3wr/1
 
-The study compares the local feature extraction of CNNs (EfficientNet-V2) against the global contextual attention of Swin Transformers, specifically focusing on complex pathological patterns like Rice Tungro and Leaf Blast.
+### Details:
+- Original Images: 2,769
+- Augmented Images: 19,128
+- Classes:
+  - Rice Blast
+  - Leaf Blast
+  - Leaf Stripes
+  - Leaffolder
+  - Tungro
+  - Insect damage
+  - Healthy leaves
+  - General rice category
 
-🚀 Key Features
+### Augmentation Techniques:
+- Rotation
+- Flipping
+- Cropping
+- Scaling
+- Color adjustment
 
-Hybrid Data Augmentation: Integration of a CycleGAN-based synthetic data pipeline (Scenario C) to improve Transformer generalization.
+---
 
-State-of-the-Art Architectures: Comparative analysis of EfficientNet-V2-S and Swin-Transformer (Tiny).
+## 🧠 Models Used
 
-Scientific Validation: Quantitative assessment of synthetic data using FID (Fréchet Inception Distance).
+### 1. ResNet50 (CNN)
+- Deep Residual Network
+- Uses skip connections
+- Partial fine-tuning
+- Good for local feature extraction
 
-Dual-Explainable AI: Spatial interpretability via Grad-CAM++ and feature-level attribution via Gradient-SHAP.
+### 2. Swin Transformer
+- Shifted Window Self-Attention
+- Captures global + local features
+- Better for complex disease patterns
+- Faster convergence
 
-High Performance: Targeted accuracy of >95% on original field images using a 70/15/15 stratified split.
+---
 
-📊 Dataset Structure
+## 🔍 Explainable AI (XAI)
+To improve transparency:
 
-The project utilizes a comprehensive dataset (Nov 2024) encompassing 8 distinct classes:
+### ✔ Grad-CAM++
+- Highlights disease-affected regions in image
+- Shows where model is focusing
 
-Diseases: Rice Blast, Rice Tungro, Rice Stripes, Leaf Scald.
+### ✔ Gradient SHAP
+- Explains feature importance
+- Identifies texture and color influence
 
-Pests: Rice Leaffolder, General Insects.
+---
 
-Health: Healthy, General Rice Foliage.
+## ⚙️ Methodology
+1. Dataset collection and preprocessing
+2. Class balancing of dataset
+3. Image resizing (224×224)
+4. Normalization (ImageNet standards)
+5. Training ResNet50 and Swin Transformer
+6. Model evaluation using:
+   - Accuracy
+   - Precision
+   - Recall
+   - F1-score
+7. Applying XAI for interpretation
 
-Data Partitioning:
+---
 
-Scenario B: Original + Standard Geometric Augmentations (~20,474 images).
+## 📈 Results
 
-Scenario C: Original + GAN-Generated Synthetic Images (~2,938 images).
+| Model           | Accuracy | F1 Score | Epochs |
+|----------------|----------|----------|--------|
+| ResNet50       | 93.72%   | 0.9425   | 30     |
+| Swin Transformer | 95.33%   | 0.9594   | 20     |
 
-Testing: 15% (416 images) reserved exclusively from original field photos for unbiased benchmarking.
+### Key Observations:
+- Swin Transformer outperforms ResNet50
+- Faster convergence in Transformer model
+- Better performance on complex disease patterns
 
-🛠️ Installation
-Local Setup (Ubuntu)
-code
-Bash
-download
-content_copy
-expand_less
-# Clone the repository
-git clone https://github.com/yourusername/rice-disease-detection.git
-cd rice-disease-detection
+---
 
-# Create Virtual Environment
-python3 -m venv rice_env
-source rice_env/bin/activate
+## 🧾 Key Findings
+- Transformers capture long-range spatial patterns better than CNNs
+- Class-balanced dataset improves fairness
+- XAI confirms model focuses on actual disease regions
+- Reduces false predictions and improves trust
 
-# Install Dependencies
-pip install torch torchvision timm pytorch-grad-cam torchmetrics[image] torch-fidelity tqdm scikit-learn matplotlib
-Google Colab Setup
+---
 
-Simply upload the provided .ipynb notebook and ensure the Rice Dataset.zip is located in your Google Drive at /MyDrive/DL_PROJECT/.
+## 🚀 Future Scope
+- Deployment on mobile and IoT devices
+- Real-time field disease detection
+- Disease severity estimation
+- Use of diffusion models for data augmentation
+- Domain adaptation for real-world environments
 
-💻 Usage
-1. Data Generation (GAN)
+---
 
-Run the GAN module to generate synthetic pathological textures:
+## 💻 Tech Stack
+- Python
+- TensorFlow / PyTorch
+- OpenCV
+- NumPy, Pandas
+- Matplotlib
+- Grad-CAM++, SHAP
 
-code
-Python
-download
-content_copy
-expand_less
-generate_scenario_c(orig_train_subset, "/content/GAN_Images")
-2. Model Training
+---
 
-Train the comparative matrix (CNN vs Transformer):
+## 📌 Project Impact
+- Helps farmers in early disease detection
+- Reduces crop loss
+- Improves agricultural productivity
+- Enables smart farming using AI
 
-code
-Python
-download
-content_copy
-expand_less
-# Train Swin Transformer on GAN data
-run_research_experiment("vit", loader_C, "Transformer_Scenario_C")
-3. Explainable AI Visualization
+---
 
-Generate Grad-CAM++ heatmaps to verify lesion localization:
+## 👩‍💻 Author
+**Pranali Patil**  
+**Piyush Patil**  
+**Sayali Pawar**  
 
-code
-Python
-download
-content_copy
-expand_less
-visualize_best(best_model, "vit", sample_idx=10)
-📈 Experimental Results
-Experiment Variant	Test Accuracy (%)	FID Score
-CNN (Scenario B)	93.72%	N/A
-Transformer (Scenario C)	95.33%	40.62
-CNN (Scenario C)	91.20%	40.62
-🔍 Explainable AI (XAI)
+PCCOE, Pune  
 
-We utilize a dual-XAI approach to ensure the models are not "cheating" by looking at background artifacts:
+---
 
-Grad-CAM++: Provides high-resolution spatial heatmaps focusing on lesion boundaries.
-
-SHAP: Explains feature contributions (color/texture) to the final diagnosis.
-
-Overfitting Ratio: A quantitative metric calculating the importance of background pixels vs. leaf pixels.
-
-📂 Project Structure
-code
-Text
-download
-content_copy
-expand_less
-├── data/
-│   ├── Original Dataset/        # Raw field images
-│   ├── Augmented Dataset/       # Standard geometric augmentations
-│   └── GAN_Images/              # Synthetic samples generated by this project
-├── models/                      # Saved .pth weights
-├── notebooks/                   # Google Colab / Jupyter Lab files
-├── results/                     # XAI Heatmaps and Confusion Matrices
-└── README.md
-📜 References
-
-Liu, Z., et al. (2021). "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows." ICCV.
-
-Kondaveeti & Simhadri (2025). "3-Stage XAI Methodology for Overfitting Detection."
-
-Selvaraj et al. (2024). "Evaluation of Deep Learning with XAI for Rice Leaf Disease." Scientific Reports.
-
-🤝 Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any architectural improvements or new dataset integrations.
-
+## 📜 License
+This project is for academic purposes only.
